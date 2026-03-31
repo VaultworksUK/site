@@ -1,17 +1,24 @@
 :root {
-  --bg: #0f1220;
-  --surface: rgba(20, 25, 39, 0.76);
-  --surface-strong: #1f2937;
-  --surface-light: #f9fafb;
-  --text: #f9fafb;
-  --muted: #c1cad8;
-  --line: rgba(255, 255, 255, 0.12);
-  --accent-blue: #4fc3ff;
-  --accent-indigo: #5a6cff;
-  --accent-purple: #8b5cf6;
-  --accent-green: #22c55e;
-  --accent-gradient: linear-gradient(135deg, #4fc3ff 0%, #5a6cff 48%, #8b5cf6 100%);
-  --shadow: 0 24px 60px rgba(4, 8, 20, 0.45);
+  --background: #f3f4f6;
+  --foreground: #1f2937;
+  --card: #ffffff;
+  --card-foreground: #111827;
+  --popover: #ffffff;
+  --popover-foreground: #111827;
+  --primary: #4f46e5;
+  --primary-foreground: #ffffff;
+  --secondary: #e0e7ff;
+  --secondary-foreground: #1f2937;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --muted: #f3f4f6;
+  --muted-foreground: #6b7280;
+  --accent: #e0e7ff;
+  --accent-foreground: #1f2937;
+  --border: #eef2f6;
+  --input: #eef2f6;
+  --ring: #4f46e5;
+  --shadow: 0 20px 50px rgba(79, 70, 229, 0.08);
   --radius: 24px;
   --max-width: 1120px;
 }
@@ -27,12 +34,11 @@ html {
 body {
   margin: 0;
   font-family: "Plus Jakarta Sans", sans-serif;
-  color: var(--text);
+  color: var(--foreground);
   background:
-    radial-gradient(circle at top left, rgba(79, 195, 255, 0.22), transparent 24%),
-    radial-gradient(circle at 80% 12%, rgba(139, 92, 246, 0.2), transparent 26%),
-    radial-gradient(circle at 50% 100%, rgba(90, 108, 255, 0.18), transparent 30%),
-    linear-gradient(180deg, #0f1220 0%, #161b2b 52%, #111522 100%);
+    radial-gradient(circle at top left, rgba(79, 70, 229, 0.12), transparent 24%),
+    radial-gradient(circle at 90% 10%, rgba(224, 231, 255, 0.95), transparent 28%),
+    linear-gradient(180deg, #fafbff 0%, var(--background) 46%, #edf2f7 100%);
   min-height: 100vh;
 }
 
@@ -56,8 +62,8 @@ img {
   top: 0;
   z-index: 10;
   backdrop-filter: blur(14px);
-  background: rgba(15, 18, 32, 0.72);
-  border-bottom: 1px solid var(--line);
+  background: rgba(243, 244, 246, 0.82);
+  border-bottom: 1px solid var(--border);
 }
 
 .nav-wrap {
@@ -87,23 +93,23 @@ img {
 }
 
 .site-nav a {
-  color: var(--muted);
+  color: var(--muted-foreground);
   font-weight: 600;
   transition: color 180ms ease;
 }
 
 .site-nav a:hover,
 .site-nav a.active {
-  color: white;
+  color: var(--foreground);
 }
 
 .nav-toggle {
   display: none;
   width: 48px;
   height: 48px;
-  border: 1px solid var(--line);
+  border: 1px solid var(--border);
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.78);
   padding: 0;
   cursor: pointer;
 }
@@ -113,7 +119,7 @@ img {
   width: 20px;
   height: 2px;
   margin: 5px auto;
-  background: var(--text);
+  background: var(--foreground);
   border-radius: 999px;
   transition: transform 180ms ease, opacity 180ms ease;
 }
@@ -140,7 +146,7 @@ img {
 
 .eyebrow {
   margin: 0 0 1rem;
-  color: var(--accent-blue);
+  color: var(--primary);
   font-size: 0.85rem;
   font-weight: 800;
   letter-spacing: 0.18em;
@@ -150,7 +156,7 @@ img {
 .lead {
   max-width: 58ch;
   margin: 1.5rem 0 0;
-  color: var(--muted);
+  color: var(--muted-foreground);
   font-size: 1.05rem;
   line-height: 1.8;
 }
@@ -162,17 +168,18 @@ img {
   margin-top: 2rem;
   padding: 0.95rem 1.4rem;
   border-radius: 999px;
-  background: var(--accent-gradient);
-  color: white;
+  background: var(--primary);
+  color: var(--primary-foreground);
   font-weight: 700;
-  box-shadow: 0 18px 40px rgba(90, 108, 255, 0.34);
+  box-shadow: 0 14px 30px rgba(79, 70, 229, 0.22);
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
 .button:hover,
 .button:focus-visible {
   transform: translateY(-2px);
-  box-shadow: 0 22px 50px rgba(90, 108, 255, 0.42);
+  filter: brightness(0.95);
+  box-shadow: 0 18px 35px rgba(79, 70, 229, 0.26);
 }
 
 .hero-card {
@@ -186,15 +193,15 @@ img {
   width: 220px;
   height: 220px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(79, 195, 255, 0.35) 0%, rgba(139, 92, 246, 0.28) 62%, transparent 100%);
-  filter: blur(24px);
+  background: radial-gradient(circle, rgba(79, 70, 229, 0.2) 0%, rgba(224, 231, 255, 0.65) 62%, transparent 100%);
+  filter: blur(28px);
 }
 
 .hero-panel,
 .feature-card,
 .contact-card {
-  border: 1px solid var(--line);
-  background: var(--surface);
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.84);
   backdrop-filter: blur(12px);
   box-shadow: var(--shadow);
 }
@@ -208,14 +215,14 @@ img {
 
 .hero-panel p,
 .hero-panel li {
-  color: var(--muted);
+  color: var(--muted-foreground);
 }
 
 .hero-panel p {
   margin-top: 0;
   font-size: 0.95rem;
   font-weight: 800;
-  color: white;
+  color: var(--card-foreground);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -259,14 +266,14 @@ img {
   margin-top: 0;
   margin-bottom: 0.75rem;
   font-size: 1.15rem;
-  color: white;
+  color: var(--card-foreground);
 }
 
 .feature-card p,
 .two-column p,
 .contact-card p {
   margin: 0;
-  color: var(--muted);
+  color: var(--muted-foreground);
   line-height: 1.8;
 }
 
@@ -281,8 +288,9 @@ img {
 .two-column > div {
   padding: 2rem;
   border-radius: var(--radius);
-  background: rgba(20, 25, 39, 0.68);
-  border: 1px solid var(--line);
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
 }
 
 .contact-card {
@@ -290,13 +298,13 @@ img {
 }
 
 .contact-card a {
-  color: var(--accent-blue);
+  color: var(--primary);
 }
 
 .contact-card h2,
 .two-column h2,
 .section-head h2 {
-  color: white;
+  color: var(--card-foreground);
 }
 
 .site-footer {
@@ -305,12 +313,12 @@ img {
 
 .footer-wrap {
   padding-top: 1rem;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid var(--border);
 }
 
 .site-footer p {
   margin: 0;
-  color: var(--muted);
+  color: var(--muted-foreground);
   font-size: 0.95rem;
 }
 
@@ -336,9 +344,9 @@ body.menu-open {
     flex-direction: column;
     align-items: flex-start;
     padding: 1rem;
-    border: 1px solid var(--line);
+    border: 1px solid var(--border);
     border-radius: 20px;
-    background: rgba(15, 18, 32, 0.96);
+    background: rgba(255, 255, 255, 0.96);
     box-shadow: var(--shadow);
   }
 
