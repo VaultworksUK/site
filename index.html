@@ -48,7 +48,7 @@
           <h1>Vault360: A secure digital vault for life’s most important information</h1>
           <p class="lead">Vault360 helps individuals organise, protect, and share their assets, documents, and wishes — ensuring everything is accessible when it matters most.</p>
           <div class="hero-actions">
-            <a class="button" href="#closing">Book a Demo</a>
+            <a class="button js-demo-trigger" href="#demo-form">Book a Demo</a>
             <a class="button button-secondary" href="#how-it-works">How it Works</a>
           </div>
         </div>
@@ -211,7 +211,7 @@
       <div class="container closing-panel">
         <p class="section-kicker">Closing</p>
         <h2>Life doesn’t come with a manual.<br>Vault360 helps you create one.</h2>
-        <a class="button" href="mailto:hello@example.com">Book a Demo</a>
+        <a class="button js-demo-trigger" href="#demo-form">Book a Demo</a>
       </div>
     </section>
   </main>
@@ -229,6 +229,18 @@
     </div>
   </footer>
 
+  <div class="modal-overlay" id="demo-form" aria-hidden="true">
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="demo-form-title">
+      <button class="modal-close" type="button" aria-label="Close form">×</button>
+      <div class="modal-content">
+        <p class="section-kicker">Book a Demo</p>
+        <h2 id="demo-form-title">See Vault360 in action.</h2>
+        <div class="hs-form-frame" data-region="eu1" data-form-id="9f4dad7c-15ca-4f42-bc0c-88ce9c1a9a01" data-portal-id="147949500"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://js-eu1.hsforms.net/forms/embed/147949500.js" defer></script>
   <script src="script.js"></script>
 </body>
 </html>
