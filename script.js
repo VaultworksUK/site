@@ -1,8 +1,7 @@
 const navToggle = document.querySelector(".nav-toggle");
 const nav = document.querySelector(".site-nav");
 const demoTriggers = document.querySelectorAll(".js-demo-trigger");
-const demoModal = document.querySelector(".modal-overlay");
-const modalClose = document.querySelector(".modal-close");
+const demoSection = document.querySelector("#demo-form");
 const hubspotFormContainer = document.querySelector("#hubspot-form-container");
 let hubspotFormLoaded = false;
 
@@ -22,9 +21,9 @@ if (navToggle && nav) {
   });
 }
 
-if (demoModal && modalClose) {
+if (demoSection && hubspotFormContainer) {
   const ensureHubspotForm = () => {
-    if (!hubspotFormContainer || hubspotFormLoaded || !window.hbspt?.forms?.create) {
+    if (hubspotFormLoaded || !window.hbspt?.forms?.create) {
       return;
     }
 
@@ -38,45 +37,31 @@ if (demoModal && modalClose) {
     hubspotFormLoaded = true;
   };
 
-  const closeModal = () => {
-    demoModal.classList.remove("is-open");
-    demoModal.setAttribute("aria-hidden", "true");
-    document.body.classList.remove("modal-open");
-  };
-
-  const openModal = () => {
+  const revealDemoSection = () => {
     ensureHubspotForm();
-    demoModal.classList.add("is-open");
-    demoModal.setAttribute("aria-hidden", "false");
-    document.body.classList.add("modal-open");
+    demoSection.classList.remove("is-hidden");
+    demoSection.setAttribute("aria-hidden", "false");
+    demoSection.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   demoTriggers.forEach((trigger) => {
-    trigger.addEventListener("click", (event) => {
-      event.preventDefault();
-      openModal();
+    trigger.addEventListener("click", () => {
+      revealDemoSection();
+      nav?.classList.remove("is-open");
+      navToggle?.setAttribute("aria-expanded", "false");
+      document.body.classList.remove("menu-open");
     });
   });
 
-  modalClose.addEventListener("click", closeModal);
-
-  demoModal.addEventListener("click", (event) => {
-    if (event.target === demoModal) {
-      closeModal();
-    }
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && demoModal.classList.contains("is-open")) {
-      closeModal();
-    }
-  });
-
-  window.addEventListener("load", () => {
+  const tryLoadHubspotForm = () => {
     if (window.hbspt?.forms?.create) {
       ensureHubspotForm();
+    } else {
+      window.setTimeout(tryLoadHubspotForm, 300);
     }
-  });
+  };
+
+  window.addEventListener("load", tryLoadHubspotForm);
 }
 
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
