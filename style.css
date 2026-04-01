@@ -342,11 +342,25 @@ h3 {
 }
 
 .mockup-card,
-.mockup-stats > div {
+.mockup-stats > div,
+.mockup-shot {
   padding: 1.25rem;
   border: 1px solid var(--border);
   border-radius: 20px;
   background: linear-gradient(180deg, #ffffff 0%, #f8faff 100%);
+}
+
+.mockup-shot {
+  margin: 0;
+  padding: 0.75rem;
+  overflow: hidden;
+}
+
+.mockup-image {
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  object-fit: cover;
 }
 
 .mockup-label {
