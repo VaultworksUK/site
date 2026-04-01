@@ -2,8 +2,6 @@ const navToggle = document.querySelector(".nav-toggle");
 const nav = document.querySelector(".site-nav");
 const demoTriggers = document.querySelectorAll(".js-demo-trigger");
 const demoSection = document.querySelector("#demo-form");
-const hubspotFormContainer = document.querySelector("#hubspot-form-container");
-let hubspotFormLoaded = false;
 
 if (navToggle && nav) {
   navToggle.addEventListener("click", () => {
@@ -21,7 +19,7 @@ if (navToggle && nav) {
   });
 }
 
-if (demoSection && hubspotFormContainer) {
+if (demoSection) {
   const scrollToDemoSection = () => {
     const headerOffset = 96;
     const targetTop = demoSection.getBoundingClientRect().top + window.scrollY - headerOffset;
@@ -32,39 +30,13 @@ if (demoSection && hubspotFormContainer) {
     });
   };
 
-  const ensureHubspotForm = () => {
-    if (hubspotFormLoaded || !window.hbspt?.forms?.create) {
-      return false;
-    }
-
-    window.hbspt.forms.create({
-      region: "eu1",
-      formId: "9f4dad7c-15ca-4f42-bc0c-88ce9c1a9a01",
-      portalId: "147949500",
-      target: "#hubspot-form-container",
-    });
-
-    hubspotFormLoaded = true;
-    return true;
-  };
-
   const revealDemoSection = () => {
     demoSection.classList.remove("is-hidden");
     demoSection.setAttribute("aria-hidden", "false");
     window.requestAnimationFrame(() => {
       scrollToDemoSection();
     });
-
-    const tryRenderVisibleForm = () => {
-      if (ensureHubspotForm()) {
-        window.setTimeout(scrollToDemoSection, 150);
-        return;
-      }
-
-      window.setTimeout(tryRenderVisibleForm, 300);
-    };
-
-    window.setTimeout(tryRenderVisibleForm, 50);
+    window.setTimeout(scrollToDemoSection, 250);
   };
 
   demoTriggers.forEach((trigger) => {
