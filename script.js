@@ -40,7 +40,8 @@ if (demoSection) {
   };
 
   demoTriggers.forEach((trigger) => {
-    trigger.addEventListener("click", () => {
+    trigger.addEventListener("click", (event) => {
+      event.preventDefault();
       revealDemoSection();
       nav?.classList.remove("is-open");
       navToggle?.setAttribute("aria-expanded", "false");
