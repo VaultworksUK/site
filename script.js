@@ -22,6 +22,16 @@ if (navToggle && nav) {
 }
 
 if (demoSection && hubspotFormContainer) {
+  const scrollToDemoSection = () => {
+    const headerOffset = 96;
+    const targetTop = demoSection.getBoundingClientRect().top + window.scrollY - headerOffset;
+
+    window.scrollTo({
+      top: Math.max(targetTop, 0),
+      behavior: "smooth",
+    });
+  };
+
   const ensureHubspotForm = () => {
     if (hubspotFormLoaded || !window.hbspt?.forms?.create) {
       return false;
@@ -41,10 +51,13 @@ if (demoSection && hubspotFormContainer) {
   const revealDemoSection = () => {
     demoSection.classList.remove("is-hidden");
     demoSection.setAttribute("aria-hidden", "false");
-    demoSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.requestAnimationFrame(() => {
+      scrollToDemoSection();
+    });
 
     const tryRenderVisibleForm = () => {
       if (ensureHubspotForm()) {
+        window.setTimeout(scrollToDemoSection, 150);
         return;
       }
 

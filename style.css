@@ -544,10 +544,6 @@ body.menu-open {
     padding: 4.25rem 0;
   }
 
-  .modal-dialog {
-    padding: 1.5rem;
-  }
-
   h1 {
     font-size: clamp(2.7rem, 13vw, 4.1rem);
   }
