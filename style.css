@@ -204,6 +204,7 @@ h3 {
 }
 
 .button {
+  appearance: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -516,7 +517,7 @@ body.modal-open {
   cursor: pointer;
 }
 
-.hs-form-frame {
+.hubspot-form-container {
   min-height: 400px;
 }
 
