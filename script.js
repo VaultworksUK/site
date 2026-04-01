@@ -24,7 +24,7 @@ if (navToggle && nav) {
 if (demoSection && hubspotFormContainer) {
   const ensureHubspotForm = () => {
     if (hubspotFormLoaded || !window.hbspt?.forms?.create) {
-      return;
+      return false;
     }
 
     window.hbspt.forms.create({
@@ -35,13 +35,23 @@ if (demoSection && hubspotFormContainer) {
     });
 
     hubspotFormLoaded = true;
+    return true;
   };
 
   const revealDemoSection = () => {
-    ensureHubspotForm();
     demoSection.classList.remove("is-hidden");
     demoSection.setAttribute("aria-hidden", "false");
     demoSection.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    const tryRenderVisibleForm = () => {
+      if (ensureHubspotForm()) {
+        return;
+      }
+
+      window.setTimeout(tryRenderVisibleForm, 300);
+    };
+
+    window.setTimeout(tryRenderVisibleForm, 50);
   };
 
   demoTriggers.forEach((trigger) => {
@@ -52,16 +62,6 @@ if (demoSection && hubspotFormContainer) {
       document.body.classList.remove("menu-open");
     });
   });
-
-  const tryLoadHubspotForm = () => {
-    if (window.hbspt?.forms?.create) {
-      ensureHubspotForm();
-    } else {
-      window.setTimeout(tryLoadHubspotForm, 300);
-    }
-  };
-
-  window.addEventListener("load", tryLoadHubspotForm);
 }
 
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
