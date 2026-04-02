@@ -477,6 +477,11 @@ body.menu-open {
   transition: opacity 220ms ease;
 }
 
+.pricing-section {
+  transition: opacity 220ms ease;
+}
+
+.pricing-section.is-hidden,
 .demo-section.is-hidden {
   max-height: 0;
   padding-top: 0;
@@ -486,12 +491,18 @@ body.menu-open {
   pointer-events: none;
 }
 
+.pricing-panel,
 .demo-panel {
   padding: 2rem;
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+}
+
+.pricing-panel stripe-pricing-table {
+  display: block;
+  margin-top: 1rem;
 }
 
 .hubspot-form-container {
