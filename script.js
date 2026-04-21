@@ -1,9 +1,7 @@
 const navToggle = document.querySelector(".nav-toggle");
 const nav = document.querySelector(".site-nav");
 const demoTriggers = document.querySelectorAll(".js-demo-trigger");
-const pricingTriggers = document.querySelectorAll(".js-pricing-trigger");
 const demoSection = document.querySelector("#demo-form");
-const pricingSection = document.querySelector("#pricing");
 
 if (navToggle && nav) {
   navToggle.addEventListener("click", () => {
@@ -45,37 +43,6 @@ if (demoSection) {
     trigger.addEventListener("click", (event) => {
       event.preventDefault();
       revealDemoSection();
-      nav?.classList.remove("is-open");
-      navToggle?.setAttribute("aria-expanded", "false");
-      document.body.classList.remove("menu-open");
-    });
-  });
-}
-
-if (pricingSection) {
-  const scrollToPricingSection = () => {
-    const headerOffset = 96;
-    const targetTop = pricingSection.getBoundingClientRect().top + window.scrollY - headerOffset;
-
-    window.scrollTo({
-      top: Math.max(targetTop, 0),
-      behavior: "smooth",
-    });
-  };
-
-  const revealPricingSection = () => {
-    pricingSection.classList.remove("is-hidden");
-    pricingSection.setAttribute("aria-hidden", "false");
-    window.requestAnimationFrame(() => {
-      scrollToPricingSection();
-    });
-    window.setTimeout(scrollToPricingSection, 250);
-  };
-
-  pricingTriggers.forEach((trigger) => {
-    trigger.addEventListener("click", (event) => {
-      event.preventDefault();
-      revealPricingSection();
       nav?.classList.remove("is-open");
       navToggle?.setAttribute("aria-expanded", "false");
       document.body.classList.remove("menu-open");
